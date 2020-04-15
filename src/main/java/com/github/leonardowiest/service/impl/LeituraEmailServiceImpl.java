@@ -33,6 +33,8 @@ public class LeituraEmailServiceImpl implements LeituraEmailService {
 		
 		session = this.createSession();
 
+		Properties p = emailProperties.loadProperties();
+		
 		return Collections.emptyList();
 	}
 
