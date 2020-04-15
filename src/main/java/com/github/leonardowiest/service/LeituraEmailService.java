@@ -1,9 +1,9 @@
-package com.github.leonardowiest.factory;
+package com.github.leonardowiest.service;
 
 import java.util.List;
 
 @FunctionalInterface
-public interface LeituraEmailFactory {
+public interface LeituraEmailService {
 
 	public abstract List<?> read();
 }
