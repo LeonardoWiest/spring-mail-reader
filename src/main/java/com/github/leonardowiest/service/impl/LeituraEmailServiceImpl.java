@@ -8,17 +8,20 @@ import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import com.github.leonardowiest.config.EmailProperties;
 import com.github.leonardowiest.service.LeituraEmailService;
 
 @Lazy(true)
 @Service
 public class LeituraEmailServiceImpl implements LeituraEmailService {
 
-	private static Properties properties = null;
+	@Autowired
+	private EmailProperties emailProperties;
 
 	private static Session session;
 
@@ -26,6 +29,8 @@ public class LeituraEmailServiceImpl implements LeituraEmailService {
 	public List<?> read() {
 		System.out.println("Executando o método read().");
 
+		emailProperties.getUsername();
+		
 		session = this.createSession();
 
 		return Collections.emptyList();
@@ -33,15 +38,6 @@ public class LeituraEmailServiceImpl implements LeituraEmailService {
 
 	private Session createSession() {
 
-		Session.getInstance(properties, new Authenticator() {
-
-			@Override
-			protected PasswordAuthentication getPasswordAuthentication() {
-
-				return new PasswordAuthentication(properties.getProperty("email.username"),
-						properties.getProperty("email.password"));
-			}
-		});
 
 		return null;
 	}
