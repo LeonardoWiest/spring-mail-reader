@@ -6,6 +6,7 @@ import java.util.Properties;
 
 import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import com.github.leonardowiest.util.IfNull;
 
@@ -14,6 +15,7 @@ import com.github.leonardowiest.util.IfNull;
  * @author Leonardo Wiest
  *
  */
+@Primary
 @Configuration
 public class EmailProperties extends MailProperties {
 
@@ -28,6 +30,7 @@ public class EmailProperties extends MailProperties {
 		prop.put("spring.mail.default-encoding", IfNull.get(super.getDefaultEncoding(), StandardCharsets.UTF_8));
 		prop.put("spring.mail.properties.*", IfNull.get(super.getProperties(), new HashMap<>()));
 		prop.put("spring.mail.jndi-name", IfNull.get(super.getJndiName(), ""));
+		prop.put("spring.mail.protocol", IfNull.get(super.getProtocol(), "smtp"));
 
 		return prop;
 	}
